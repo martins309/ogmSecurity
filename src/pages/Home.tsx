@@ -46,7 +46,7 @@ const Home = () => {
             {/* Animated Hero Image */}
             <div className="relative flex justify-center items-center">
               <AnimatedHeroImage
-                src="/ogmHeroSec copy.png"
+                src="/finalSecN.png"
                 alt="OGM Security - Comprehensive cybersecurity illustration showing interconnected devices, database security, and digital protection systems"
                 className="max-w-full"
                 width={600}
