@@ -1,0 +1,27 @@
+name: Continuous Deployment
+
+on:
+  workflow_run:
+    workflows: ["Continuous Deployment"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.16.0
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🚀 Deploy to Vercel
+        run: npx vercel --prod --yes --token=${{ secrets.OGMAI_Token }}
